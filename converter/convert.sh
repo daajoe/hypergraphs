@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 for f in *.edge
 do
  fi=${f%.edge}

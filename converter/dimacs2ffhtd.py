@@ -6,10 +6,10 @@ import networkx as nx
 
 def iter_islast(iterable):
     it = iter(iterable)
-    prev = it.next()
+    prev = next(it)
     for item in it:
         yield prev, False
-    prev = item
+        prev = item
     yield prev, True
 
     
@@ -32,7 +32,6 @@ else:
 
     
 G = nx.Graph()
-line_number=1
 for line in inp.readlines():
     line=line.split()
     if line==[]:
@@ -44,7 +43,9 @@ for line in inp.readlines():
         continue
     if line[0]=='e':
         G.add_edge(int(line[1]), int(line[2]))
+        #print line[1], line[2]
 
+        
 for i, (edge,last) in enumerate(iter_islast(G.edges())):
     edge = map(lambda x: 'v%s' %x, edge)
     eol_symbol = '.' if last else ','
